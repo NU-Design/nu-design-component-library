@@ -1,1 +1,1 @@
-# redesigned-guide
+# nu-design-component-library
