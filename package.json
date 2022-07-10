@@ -35,6 +35,17 @@
       "last 1 safari version"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
   "devDependencies": {
     "@storybook/addon-actions": "~6.5.9",
     "@storybook/addon-essentials": "~6.5.9",
@@ -53,6 +64,8 @@
     "eslint-config-prettier": "~8.5.0",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-react": "~7.30.1",
+    "husky": "~8.0.1",
+    "lint-staged": "~13.0.3",
     "prettier": "~2.7.1",
     "prop-types": "~15.8.1",
     "typescript": "~4.7.4",
