@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -22,15 +23,10 @@
       "last 1 safari version"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
   "lint-staged": {
-    "**/*.{js,jsx}": [
+    "**/*.{ts,tsx,js,jsx}": [
       "prettier --write",
-      "eslint --fix"
+      "eslint"
     ]
   },
   "dependencies": {
