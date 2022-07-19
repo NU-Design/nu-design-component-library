@@ -1,52 +1,51 @@
-import React from 'react';
-import './button.scss';
+import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+import classNames from 'classnames';
+import './Button.scss';
 
-interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
+export type ButtonSize = 'lg' | 'sm';
+export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
+
+interface BaseButtonProps {
+  className?: string;
+  disabled?: boolean;
+  size?: ButtonSize;
+  btnType?: ButtonType;
+  children: React.ReactNode;
+  href?: string;
 }
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
-  label,
-  ...props
-}: ButtonProps) => {
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary';
-  return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' ',
-      )}
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
-  );
+export const Button: FC<ButtonProps> = (props) => {
+  // eslint-disable-next-line prettier/prettier, operator-linebreak
+  const { btnType, className, disabled, size, children, href, ...restProps } =
+    props;
+  // btn, btn-lg, btn-primary
+  const classes = classNames('btn', className, {
+    [`btn-${btnType}`]: btnType,
+    [`btn-${size}`]: size,
+    disabled: btnType === 'link' && disabled,
+  });
+  if (btnType === 'link' && href) {
+    return (
+      <a className={classes} href={href} {...restProps}>
+        {children}
+      </a>
+    );
+  } else {
+    return (
+      // eslint-disable-next-line react/button-has-type
+      <button className={classes} disabled={disabled} {...restProps}>
+        {children}
+      </button>
+    );
+  }
 };
+
+Button.defaultProps = {
+  disabled: false,
+  btnType: 'default',
+};
+
+export default Button;
