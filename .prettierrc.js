@@ -5,7 +5,7 @@ module.exports = {
   trailingComma: 'all', // for Airbnb style
   overrides: [
     {
-      files: ['**/*.css', '**/*.html'],
+      files: ['**/*.css', '**/*.scss', '**/*.html'],
       options: {
         singleQuote: false,
       },
