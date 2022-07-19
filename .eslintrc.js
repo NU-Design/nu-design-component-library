@@ -29,5 +29,6 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
+    'react/default-props-match-prop-types': 'off',
   },
 };
