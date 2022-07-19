@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'no-else-return': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
