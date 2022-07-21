@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'arrow-body-style': 'off',
     'no-else-return': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
